@@ -69,6 +69,7 @@ func (d *DidDocumentHandler) GetByDNSDomain(w http.ResponseWriter, r *http.Reque
 func (d *DidDocumentHandler) GetByENSDomain(w http.ResponseWriter, r *http.Request) {
 	rawURL := strings.Split(r.URL.Path, "/")
 	domain := rawURL[len(rawURL)-1]
+	log.Printf("domain: '%s'\n", domain)
 
 	state, err := d.DidDocumentService.ResolveENSDomain(r.Context(), domain)
 	if err != nil {
