@@ -86,8 +86,11 @@ func (d *DidDocumentHandler) GetByENSDomain(w http.ResponseWriter, r *http.Reque
 }
 
 func (d *DidDocumentHandler) GetGist(w http.ResponseWriter, r *http.Request) {
+	log.Printf("GetGist")
 	chain := r.URL.Query().Get("chain")
+	log.Printf("chain: '%s'\n", chain)
 	networkid := r.URL.Query().Get("networkid")
+	log.Printf("networkid: '%s'\n", networkid)
 	if chain == "" || networkid == "" {
 		log.Println("'chain' and 'networkid' should be set")
 		w.WriteHeader(http.StatusBadRequest)

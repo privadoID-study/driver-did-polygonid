@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"log"
 	"math/big"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
@@ -78,6 +79,8 @@ func (r *Resolver) ResolveGist(
 			return nil, err
 		}
 	}
+
+	log.Printf("gistRoot: %s\n", gistRoot.String())
 
 	rootInfo, err := r.state.GetGISTRootInfo(&bind.CallOpts{Context: ctx}, gistRoot)
 	if err = notFoundErr(err); err != nil {
